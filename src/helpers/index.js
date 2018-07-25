@@ -1,6 +1,7 @@
 const errors = require('./errors')
 const schedule = require('node-schedule')
 const moment = require('moment')
+const fs = require('fs')
 
 exports.getUuid = function() {
     function s4() {
@@ -77,24 +78,24 @@ exports.getAcessRealIP = (req) => {
 }
 
 exports.SessStoreUser = async(ctx, next) => {
-    const env = process.env.NODE_ENV || 'development'
-    let isLogin = false
-
-    if(env === 'development') {
-        var { sign_id = '5b28d14eb04394d85288a498' } = ctx.session
-    } else {
-        var { sign_id = ''} = ctx.session
-    }
-
-    if(sign_id) {
-        sign = await models_homework.sign.findById(sign_id)
-        isLogin = true
-    }
-
-    ctx.state = {
-        sign,
-        isLogin,
-    }
+    // const env = process.env.NODE_ENV || 'development'
+    // let isLogin = false
+    //
+    // if(env === 'development') {
+    //     var { sign_id = '5b28d14eb04394d85288a498' } = ctx.session
+    // } else {
+    //     var { sign_id = ''} = ctx.session
+    // }
+    //
+    // if(sign_id) {
+    //     sign = await models_homework.sign.findById(sign_id)
+    //     isLogin = true
+    // }
+    //
+    // ctx.state = {
+    //     sign,
+    //     isLogin,
+    // }
 
     await next()
 }

@@ -14,7 +14,6 @@ const _log = async(url, path, params, opt, ip) => {
         params,
         opt,
         ip,
-        org_id,
     }
     await models.log.create(r)
 }
